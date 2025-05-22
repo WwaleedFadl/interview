@@ -3,7 +3,6 @@ export default function Home() {
     <div className="m-10">
       Home
     </div>
-
   );
 }
 
