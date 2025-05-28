@@ -8,6 +8,7 @@ export const useUserRole = () => {
   });
 
   const isLoading = userData === undefined;
+
   return {
     isLoading,
     isInterviewer: userData?.role === "interviewer",
