@@ -14,9 +14,9 @@ interface MeetingModalProps {
 export default function MeetingModal(
   { isOpen, onClose, title, isJoinMeeting }: MeetingModalProps,
 ) {
-
   const [meetingUrl, setMeetingUrl] = useState("");
   const { createInstantMeeting, joinMeeting } = useMeetingActions()
+
   const handleStart = () => {
     if (isJoinMeeting) {
       // full url extract meeting id
