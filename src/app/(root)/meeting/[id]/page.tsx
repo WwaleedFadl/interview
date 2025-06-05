@@ -14,7 +14,6 @@ const MeetingPage = () => {
   const [isSetupComplete, setIsSetupComplete] = useState(false)
   const { call, isCallLoading } = useGetCallById(id)
   if (!isLoaded || isCallLoading) return <LoaderUI />
-
   if (!call) {
     return (
       <div className="h-screen flex items-center justify-center">
@@ -22,6 +21,7 @@ const MeetingPage = () => {
       </div>
     )
   }
+
   return (
     <StreamCall call={call} >
       <StreamTheme>
