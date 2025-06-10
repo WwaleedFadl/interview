@@ -21,9 +21,8 @@ const MeetingRoom = () => {
     )
   }
 
-
   return (
-    <div className="h-screen">
+    <div className="h-[calc(100vh-4rem-1)]">
 
       <ResizablePanelGroup direction="horizontal">
         <ResizablePanel defaultSize={35} minSize={25} maxSize={100} className="relative">
