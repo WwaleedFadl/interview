@@ -23,65 +23,66 @@ const MeetingRoom = () => {
 
 
   return (
-    <ResizablePanelGroup direction="horizontal">
-      <ResizablePanel defaultSize={35} minSize={25} maxSize={100} className="relative">
-        <div className="absolute inset-0">
-          {layout === 'grid' ? <PaginatedGridLayout /> : <SpeakerLayout />}
-          {showParticipants && (
-            <div className="absolute right-0 top-0 h-full w-[300px] bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-              <CallParticipantsList onClose={() => setShowParticipants(false)} />
-            </div>
-          )}
-        </div>
+    <div className="h-screen">
 
-        {/* VIDEO CONTROLS */}
+      <ResizablePanelGroup direction="horizontal">
+        <ResizablePanel defaultSize={35} minSize={25} maxSize={100} className="relative">
+          <div className="absolute inset-0">
+            {layout === 'grid' ? <PaginatedGridLayout /> : <SpeakerLayout />}
+            {showParticipants && (
+              <div className="absolute right-0 top-0 h-full w-[300px] bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                <CallParticipantsList onClose={() => setShowParticipants(false)} />
+              </div>
+            )}
+          </div>
 
-        <div className="absolute bottom-4 left-0 right-0">
-          <div className="flex flex-col items-center gap-4">
-            <div className="flex items-center gap-2 flex-wrap justify-center px-4">
-              <CallControls onLeave={() => router.push("/")} />
+          {/* VIDEO CONTROLS */}
 
-              <div className="flex items-center gap-2">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="icon" className="size-10">
-                      <LayoutListIcon className="size-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuItem onClick={() => setLayout("grid")}>
-                      Grid View
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setLayout("speaker")}>
-                      Speaker View
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+          <div className="absolute bottom-4 left-0 right-0">
+            <div className="flex flex-col items-center gap-4">
+              <div className="flex items-center gap-2 flex-wrap justify-center px-4">
+                <CallControls onLeave={() => router.push("/")} />
 
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="size-10"
-                  onClick={() => setShowParticipants(!showParticipants)}
-                >
-                  <UsersIcon className="size-4" />
-                </Button>
+                <div className="flex items-center gap-2">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="outline" size="icon" className="size-10">
+                        <LayoutListIcon className="size-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem onClick={() => setLayout("grid")}>
+                        Grid View
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => setLayout("speaker")}>
+                        Speaker View
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
 
-                {/*<EndCallButton />*/
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="size-10"
+                    onClick={() => setShowParticipants(!showParticipants)}
+                  >
+                    <UsersIcon className="size-4" />
+                  </Button>
+                  <button>End Call Button</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-      </ResizablePanel>
+        </ResizablePanel>
 
-      <ResizableHandle withHandle />
+        <ResizableHandle withHandle />
 
-      <ResizablePanel defaultSize={65} minSize={25}>
-        <h1>Code Editor Will Go Here</h1>
-      </ResizablePanel>
-
-    </ResizablePanelGroup >
+        <ResizablePanel defaultSize={65} minSize={25}>
+          <h1>Code Editor Will Go Here</h1>
+        </ResizablePanel>
+      </ResizablePanelGroup >
+    </div>
   )
 }
 
