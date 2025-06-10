@@ -2,7 +2,7 @@ import { useCallStateHooks, CallingState } from "@stream-io/video-react-sdk"
 import { Loader } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { ResizablePanel, ResizablePanelGroup } from "./ui/resizable"
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "./ui/resizable"
 
 const MeetingRoom = () => {
   const router = useRouter()
@@ -24,6 +24,7 @@ const MeetingRoom = () => {
       <ResizablePanel defaultSize={35} minSize={25} maxSize={100} className="relative">
         <h1>Video will go here</h1>
       </ResizablePanel>
+      <ResizableHandle withHandle />
 
       <ResizablePanel defaultSize={65} minSize={25}>
         <h1>Code Editor Will Go Here</h1>
