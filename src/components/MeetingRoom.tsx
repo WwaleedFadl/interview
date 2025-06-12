@@ -1,35 +1,50 @@
-import { useCallStateHooks, CallingState, PaginatedGridLayout, SpeakerLayout, CallParticipantsList, CallControls } from "@stream-io/video-react-sdk"
-import { LayoutListIcon, Loader, UsersIcon } from "lucide-react"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "./ui/resizable"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "./ui/dropdown-menu"
-import { Button } from "./ui/button"
-import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu"
-import EndCallButton from "./EndCallButton"
-import CodeEditor from "./CodeEditor"
+import {
+  CallControls,
+  CallingState,
+  CallParticipantsList,
+  PaginatedGridLayout,
+  SpeakerLayout,
+  useCallStateHooks,
+} from "@stream-io/video-react-sdk";
+import { LayoutListIcon, LoaderIcon, UsersIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "./ui/resizable";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import { Button } from "./ui/button";
+import EndCallButton from "./EndCallButton";
+import CodeEditor from "./CodeEditor";
 
-const MeetingRoom = () => {
-  const router = useRouter()
-  const [layout, setLayout] = useState<"grid" | "speaker">('speaker')
-  const [showParticipants, setShowParticipants] = useState(false)
-  const { useCallCallingState } = useCallStateHooks()
-  const callingState = useCallCallingState()
+function MeetingRoom() {
+  const router = useRouter();
+  const [layout, setLayout] = useState<"grid" | "speaker">("speaker");
+  const [showParticipants, setShowParticipants] = useState(false);
+  const { useCallCallingState } = useCallStateHooks();
+
+  const callingState = useCallCallingState();
+
   if (callingState !== CallingState.JOINED) {
     return (
       <div className="h-96 flex items-center justify-center">
-        <Loader className="size-6 animate-spin" />
+        <LoaderIcon className="size-6 animate-spin" />
       </div>
-    )
+    );
   }
 
   return (
-    <div className="h-[calc(100vh-4rem-1)]">
-
+    <div className="h-[calc(100vh-4rem-1px)]">
       <ResizablePanelGroup direction="horizontal">
         <ResizablePanel defaultSize={35} minSize={25} maxSize={100} className="relative">
+          {/* VIDEO LAYOUT */}
           <div className="absolute inset-0">
-            {layout === 'grid' ? <PaginatedGridLayout /> : <SpeakerLayout />}
+            {layout === "grid" ? <PaginatedGridLayout /> : <SpeakerLayout />}
+
+            {/* PARTICIPANTS LIST OVERLAY */}
             {showParticipants && (
               <div className="absolute right-0 top-0 h-full w-[300px] bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
                 <CallParticipantsList onClose={() => setShowParticipants(false)} />
@@ -69,12 +84,12 @@ const MeetingRoom = () => {
                   >
                     <UsersIcon className="size-4" />
                   </Button>
+
                   <EndCallButton />
                 </div>
               </div>
             </div>
           </div>
-
         </ResizablePanel>
 
         <ResizableHandle withHandle />
@@ -82,9 +97,8 @@ const MeetingRoom = () => {
         <ResizablePanel defaultSize={65} minSize={25}>
           <CodeEditor />
         </ResizablePanel>
-      </ResizablePanelGroup >
+      </ResizablePanelGroup>
     </div>
-  )
+  );
 }
-
-export default MeetingRoom
+export default MeetingRoom;
