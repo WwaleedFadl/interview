@@ -7,6 +7,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "./ui/dro
 import { Button } from "./ui/button"
 import { DropdownMenuItem } from "@radix-ui/react-dropdown-menu"
 import EndCallButton from "./EndCallButton"
+import CodeEditor from "./CodeEditor"
 
 const MeetingRoom = () => {
   const router = useRouter()
