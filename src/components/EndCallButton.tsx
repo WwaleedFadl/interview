@@ -14,10 +14,13 @@ const EndCallButton = () => {
   const interview = useQuery(api.interviews.getInterviewByStreamCallId, {
     streamCallId: call?.id || ''
   })
+
   if (!call || !interview) return null;
+
   const isMeetingOwner = localParticipant?.userId === call.state.createdBy?.id
 
   if (!isMeetingOwner) return null
+
   const endCall = async () => {
     try {
       await call.endCall()
@@ -31,6 +34,7 @@ const EndCallButton = () => {
       console.log("Failed To End Meeting")
     }
   }
+
   return (
     <Button variant={'destructive'} onClick={endCall}>End Meeting</Button>
   )
