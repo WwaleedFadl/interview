@@ -11,7 +11,6 @@ type Interview = Doc<"interviews">;
 
 function MeetingCard({ interview }: { interview: Interview }) {
   const { joinMeeting } = useMeetingActions();
-
   const status = getMeetingStatus(interview);
   const formattedDate = format(new Date(interview.startTime), "EEEE, MMMM d · h:mm a");
 
