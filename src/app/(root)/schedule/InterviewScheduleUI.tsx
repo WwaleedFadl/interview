@@ -243,9 +243,7 @@ function InterviewScheduleUI() {
                     className="rounded-md border"
                   />
                 </div>
-
                 {/* TIME */}
-
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Time</label>
                   <Select
@@ -307,4 +305,3 @@ function InterviewScheduleUI() {
   );
 }
 export default InterviewScheduleUI;
-
